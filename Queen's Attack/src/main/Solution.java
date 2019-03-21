@@ -1,55 +1,70 @@
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.stream.IntStream;
 
 public class Solution {
+	static final int[] R_OFFSETS = { -1, 0, 1, 0, -1, -1, 1, 1 };
+	static final int[] C_OFFSETS = { 0, 1, 0, -1, -1, 1, -1, 1 };
 
-    // Complete the queensAttack function below.
-    static int queensAttack(int n, int k, int r_q, int c_q, int[][] obstacles) {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
 
+		int n = sc.nextInt();
+		int k = sc.nextInt();
+		int rq = sc.nextInt();
+		int cq = sc.nextInt();
+		Set<Position> obstacles = new HashSet<Position>();
+		for (int i = 0; i < k; i++) {
+			int r = sc.nextInt();
+			int c = sc.nextInt();
 
-    }
+			obstacles.add(new Position(r, c));
+		}
 
-    private static final Scanner scanner = new Scanner(System.in);
+		System.out.println(solve(n, rq, cq, obstacles));
 
-    public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+		sc.close();
+	}
 
-        String[] nk = scanner.nextLine().split(" ");
+	static int solve(int n, int rq, int cq, Set<Position> obstacles) {
+		return IntStream.range(0, R_OFFSETS.length).map(i -> attack(n, rq, cq, R_OFFSETS[i], C_OFFSETS[i], obstacles))
+				.sum();
+	}
 
-        int n = Integer.parseInt(nk[0]);
+	static int attack(int n, int rq, int cq, int rOffset, int cOffset, Set<Position> obstacles) {
+		int result = 0;
+		while (true) {
+			rq += rOffset;
+			cq += cOffset;
 
-        int k = Integer.parseInt(nk[1]);
+			if (!(rq >= 1 && rq <= n && cq >= 1 && cq <= n) || obstacles.contains(new Position(rq, cq))) {
+				break;
+			}
 
-        String[] r_qC_q = scanner.nextLine().split(" ");
+			result++;
+		}
+		return result;
+	}
+}
 
-        int r_q = Integer.parseInt(r_qC_q[0]);
+class Position {
+	int r;
+	int c;
 
-        int c_q = Integer.parseInt(r_qC_q[1]);
+	Position(int r, int c) {
+		this.r = r;
+		this.c = c;
+	}
 
-        int[][] obstacles = new int[k][2];
+	@Override
+	public int hashCode() {
+		return r * c;
+	}
 
-        for (int i = 0; i < k; i++) {
-            String[] obstaclesRowItems = scanner.nextLine().split(" ");
-            scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
-            for (int j = 0; j < 2; j++) {
-                int obstaclesItem = Integer.parseInt(obstaclesRowItems[j]);
-                obstacles[i][j] = obstaclesItem;
-            }
-        }
-
-        int result = queensAttack(n, k, r_q, c_q, obstacles);
-
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
-
-        bufferedWriter.close();
-
-        scanner.close();
-    }
+	@Override
+	public boolean equals(Object obj) {
+		Position other = (Position) obj;
+		return r == other.r && c == other.c;
+	}
 }
