@@ -2,27 +2,25 @@ package main;
 
 public class MyLinkedList {
 
-	private Node head;
+	private static Node head;
 
 	// Method to insert a new node
 
-	public MyLinkedList add(String data) {
+	public void add(String data) {
 
 		// Creating a new node with provided data
 
 		Node new_node = new Node(data);
-		new_node.setNext(null);
 
 		// Make the new node a head if the LinkedList is empty
 
-		MyLinkedList cactiList = new MyLinkedList();
-		if (cactiList.head == null) {
-			cactiList.head = new_node;
+		if (MyLinkedList.head == null) {
+			MyLinkedList.head = new_node;
 		} else {
 
 			// Or else move across the list to the end, and insert a new node there
 
-			Node last = cactiList.head;
+			Node last = MyLinkedList.head;
 			while (last.getNext() != null) {
 				last = last.getNext();
 			}
@@ -32,15 +30,11 @@ public class MyLinkedList {
 			last.setNext(new_node);
 		}
 
-		// Return the list of cacti by head
-
-		return null;
-
 	}
 	// Method that prints out the list of Cacti
-
-	public void printList(MyLinkedList cactiList) {
-		Node currNode = cactiList.head;
+	
+	public void printList() {
+		Node currNode = MyLinkedList.head;
 
 		System.out.print("Cacti List: ");
 
@@ -50,7 +44,7 @@ public class MyLinkedList {
 
 			// Print the data at the current node to the console
 
-			System.out.print(currNode.getData() + " ");
+			System.out.print(currNode.getData() + ", ");
 
 			// Jump to the next node
 
@@ -64,7 +58,7 @@ public class MyLinkedList {
 	}
 
 	public void setHead(Node head) {
-		this.head = head;
+		MyLinkedList.head = head;
 	}
 
 }

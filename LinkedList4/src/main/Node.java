@@ -2,8 +2,8 @@ package main;
 
 public class Node {
 
-	private String data;
-	private Node next;
+	String data;
+	Node next;
 	
 	//The Constructor
 

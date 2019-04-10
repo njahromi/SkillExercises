@@ -17,7 +17,7 @@ public class Driver {
 
 		// Print the LinkedList to the console
 
-		cactiList.printList(cactiList);
+		cactiList.printList();
 	}
 
 
