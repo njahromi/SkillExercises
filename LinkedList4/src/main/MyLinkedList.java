@@ -2,7 +2,7 @@ package main;
 
 public class MyLinkedList {
 
-	private static Node head;
+	private Node head;
 
 	// Method to insert a new node
 
@@ -14,13 +14,13 @@ public class MyLinkedList {
 
 		// Make the new node a head if the LinkedList is empty
 
-		if (MyLinkedList.head == null) {
-			MyLinkedList.head = new_node;
+		if (head == null) {
+			head = new_node;
 		} else {
 
 			// Or else move across the list to the end, and insert a new node there
 
-			Node last = MyLinkedList.head;
+			Node last = head;
 			while (last.getNext() != null) {
 				last = last.getNext();
 			}
@@ -34,7 +34,7 @@ public class MyLinkedList {
 	// Method that prints out the list of Cacti
 	
 	public void printList() {
-		Node currNode = MyLinkedList.head;
+		Node currNode = head;
 
 		System.out.print("Cacti List: ");
 
@@ -58,7 +58,7 @@ public class MyLinkedList {
 	}
 
 	public void setHead(Node head) {
-		MyLinkedList.head = head;
+		this.head = head;
 	}
 
 }
