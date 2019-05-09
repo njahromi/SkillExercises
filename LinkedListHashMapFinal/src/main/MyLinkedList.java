@@ -2,7 +2,8 @@ package main;
 
 public class MyLinkedList {
 
-	private Node head;
+	Node head;
+	private static int totalCount = 0;
 
 	// Method to insert a new node
 
@@ -31,12 +32,37 @@ public class MyLinkedList {
 		}
 
 	}
+
+	// Counts the number of nodes in the LinkedList, then returns them.
+
+	public int getCountNodesOfList() {
+		int nodeCount = 0;
+		Node temp = head;
+		while (temp != null) {
+			nodeCount++;
+			temp = temp.next;
+		}
+		return nodeCount;
+	}
+
+	// Counts the total number of nodes across all of the LinkedLists, then returns
+	// them.
+
+	public int getTotalNodes() {
+		Node temp = head;
+		while (temp != null) {
+			totalCount++;
+			temp = temp.next;
+		}
+		return totalCount;
+	}
+
 	// Method that prints out the list of Cacti
-	
+
 	public void printList() {
 		Node currNode = head;
 
-		System.out.print("Here's a linked list: ");
+		System.out.print("Here's a linked list ");
 
 		// Move through the Linked List
 
@@ -44,13 +70,17 @@ public class MyLinkedList {
 
 			// Print the data at the current node to the console
 
-			System.out.print(currNode.getData() + ", ");
+			System.out.print(Node.getData() + ", ");
 
 			// Jump to the next node
 
 			currNode = currNode.getNext();
 
 		}
+
+		System.out.println("The total number of all the objects in the list is -> " + getCountNodesOfList() + ".");
+
+		System.out.println("The total number of list entries is: " + getTotalNodes());
 	}
 
 	public Node getHead() {
