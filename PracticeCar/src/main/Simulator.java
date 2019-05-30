@@ -5,7 +5,9 @@ package main;
 Create a class called "Simulator", with a main() method.
 Create a "Car" class, with a run() method.
 Inside the main() method of Simulator, create an instance of a Car object, and invoke that object's run() method.
-Now, you will create additional classes that represent the different components of a car - the engine, the fuel tank, the wheels, etc. These classes should have methods related to their behaviors, and properties representing their various states (an engine is running or not, tires have levels of wear, etc).
+Now, you will create additional classes that represent the different components of a car
+ - the engine, the fuel tank, the wheels, etc. These classes should have methods related to their behaviors, 
+ and properties representing their various states (an engine is running or not, tires have levels of wear, etc).
 
 Every class representing a car part should inherit from a superclass called "CarPart." The CarPart class will have at least the following states and behaviors:
 condition - an integer that represents the remaining durability of the part (starts at 100, goes down to 0 when the part is broken)
@@ -17,6 +19,13 @@ The run() method of your Car class should iterate through the Car's collection o
  */
 
 public class Simulator {
+	
+	public static void main(String[]args) {
+		
+		Car myCar = new Car();
+	}
+	
+	myCar.run();
 
 
 }
