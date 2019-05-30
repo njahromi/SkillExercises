@@ -2,7 +2,9 @@ package main;
 
 public class Car {
 	
-	public void run() {
+	public static void run() {
+		
+		System.out.println("Running");
 		
 	}
 

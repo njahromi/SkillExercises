@@ -25,7 +25,9 @@ public class Simulator {
 		Car myCar = new Car();
 	}
 	
-	myCar.run();
+	void myCar() {
+		
+	}
 
 
 }

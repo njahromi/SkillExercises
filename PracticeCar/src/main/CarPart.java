@@ -1,6 +1,6 @@
 package main;
 
-public class CarPart {
+public class CarPart implements Functionable {
 	
 	int Condition;
 	
